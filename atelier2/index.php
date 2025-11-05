@@ -1,4 +1,4 @@
-<?php
+sau<?php
 // Démarrer une session utilisateur qui sera en mesure de pouvoir gérer les Cookies
 session_start();
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification simple du username et de son password.
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
     if ($username === 'admin' && $password === 'secret') {
-        setcookie('authToken', bin2hex(random_bytes(16)), time() + 10, $auth_token, '', false, true); // Le Cookie est initialisé et valable pendant 1 minute (60 secondes) 
+        setcookie('authToken', bin2hex(random_bytes(16)), time() + 10, $auth_token, '', false, true); // Le Cookie est initialisé et valable pendant 1 minute (60 secondes) et sauvegardé dans $auth_token 
         header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
         exit();
     } else {
