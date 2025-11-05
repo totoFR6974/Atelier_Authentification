@@ -5,7 +5,7 @@ session_start();
 // Vérifier si l'utilisateur est déjà en possession d'un cookie valide (cookie authToken ayant le contenu 12345)
 // Si l'utilisateur possède déjà ce cookie, il sera redirigé automatiquement vers la page home.php
 // Dans le cas contraire il devra s'identifier.
-if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] === $_token) {
+if (isset($_COOKIE['authToken'])
     header('Location: page_admin.php');
     exit();
 }
@@ -18,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification simple du username et de son password.
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
     if ($username === 'admin' && $password === 'secret') {
-        setcookie('authToken', bin2hex(random_bytes(16)), time() + 10, $_token, '', false, true); // Le Cookie est initialisé et valable pendant 1 minute (60 secondes) et sauvegardé dans $auth_token 
+        //génére un token
+        $token = bin2hex(random_bytes(16));
+        setcookie('authToken', $token, time() + 10, /, '', false, true); // Le Cookie est initialisé et valable pendant 1 minute (60 secondes) et sauvegardé dans $auth_token 
         header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
         exit();
     } else {
