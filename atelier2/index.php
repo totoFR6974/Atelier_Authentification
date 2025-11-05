@@ -1,4 +1,4 @@
-sau<?php
+<?php
 // Démarrer une session utilisateur qui sera en mesure de pouvoir gérer les Cookies
 session_start();
 
